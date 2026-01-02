@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local LLM (Ollama) | AiNex</title>
+    <meta name="description" content="AiNex의 Local LLM(Ollama) 보안 아키텍처 상세 설명 페이지입니다.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%234f91ff'/%3E%3Ctext x='50' y='65' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EAN%3C/text%3E%3C/svg%3E">
+
+    <!-- CDNs -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .detail-hero {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+            /* Accent color glow */
+        }
+
+        .tech-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            height: 100%;
+        }
+
+        .tech-card h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .code-block {
+            background: #0d1117;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+            color: #c9d1d9;
+            border: 1px solid #30363d;
+            margin-top: 1rem;
+        }
+
+        .breadcrumb-custom {
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb-custom a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-custom span {
+            color: var(--accent);
+            /* Accent color text */
+            font-size: 0.9rem;
+        }
+
+        .feature-icon-large {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas-container"></div>
+
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-accent">Ai</span>Nex
+            </a>
+            <div class="ms-auto">
+                <a href="index.html" class="btn btn-outline-light btn-sm">
+                    <i class="bi bi-arrow-left me-2"></i>메인으로 돌아가기
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container detail-hero">
+        <div class="breadcrumb-custom">
+            <a href="index.html">Home</a> / <span>Local LLM (Ollama)</span>
+        </div>
+
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-8">
+                <h1 class="hero-title mb-4">Local LLM<br><span style="color: var(--accent);">Complete Data
+                        Sovereignty</span></h1>
+                <p class="lead text-secondary mb-4">
+                    기업의 가장 중요한 자산인 '데이터'를 인터넷 연결 없이도 안전하게 지키는 방법.<br>
+                    AiNex는 Ollama를 기반으로 사내 폐쇄망 환경에 최적화된 로컬 LLM을 구축합니다.
+                </p>
+                <div class="d-flex gap-3">
+                    <div class="badge-item bg-opacity-10 border-accent text-accent">100% Offline Capable</div>
+                    <div class="badge-item">Privacy Preserved</div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <i class="bi bi-shield-check feature-icon-large" style="font-size: 10rem; opacity: 0.8;"></i>
+            </div>
+        </div>
+
+        <hr class="my-5 border-secondary opacity-25">
+
+        <section class="mt-5">
+            <h2 class="section-title text-start mb-5">System Architecture & Characteristics</h2>
+            <div class="tech-specs-grid">
+                <!-- Characteristic 1 -->
+                <div class="tech-card">
+                    <div class="icon-box mb-3" style="color: var(--accent); background: rgba(139, 92, 246, 0.1);">
+                        <i class="bi bi-hdd-network"></i>
+                    </div>
+                    <h4>On-Premise Deployment</h4>
+                    <p>클라우드 서버를 거치지 않고, 기업 내 물리적 서버(GPU Workstation) 또는 프라이빗 클라우드 내에 모델을 직접 배포합니다. 외부 네트워크와의 연결을 완전히 차단할
+                        수 있어 해킹 및 유출 위험이 '0'에 수렴합니다.</p>
+                </div>
+                <!-- Characteristic 2 -->
+                <div class="tech-card">
+                    <div class="icon-box mb-3" style="color: var(--accent); background: rgba(139, 92, 246, 0.1);">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                    <h4>Ollama Integration</h4>
+                    <p>경량화 및 최적화 도구인 Ollama를 활용하여 설치와 운영 복잡도를 획기적으로 낮췄습니다. Llama-3, Mistral, Gemma 등 최신
+                        SOTA(State-of-the-Art) 오픈 소스 모델을 즉시 적용할 수 있습니다.</p>
+                    <div class="code-block">
+                        // Example: Running a secure chat session
+                        $ ollama run llama3:70b-instruct-q4_K_M
+                    </div>
+                </div>
+                <!-- Characteristic 3 -->
+                <div class="tech-card">
+                    <div class="icon-box mb-3" style="color: var(--accent); background: rgba(139, 92, 246, 0.1);">
+                        <i class="bi bi-file-earmark-lock"></i>
+                    </div>
+                    <h4>Zero-Data Retention</h4>
+                    <p>추론이 끝난 후 메모리(RAM) 및 스토리지에서 대화 데이터를 즉시 파기하거나, 기업이 통제 가능한 암호화 스토리지에만 로그를 남깁니다. OpenAI나 Google 등 외부
+                        벤더에 데이터가 학습용으로 전송되지 않습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 mt-5 bg-card rounded-4 p-5 border border-glass">
+            <div class="row">
+                <div class="col-md-6 bordered-end">
+                    <h3>Minimum Hardware Requirements</h3>
+                    <p class="text-secondary mt-3">
+                        성공적인 로컬 LLM 운영을 위한 최소 및 권장 사양 가이드입니다.
+                    </p>
+                    <table class="table table-dark table-borderless mt-4 small">
+                        <thead>
+                            <tr class="text-accent">
+                                <th>Parameter</th>
+                                <th>Minimum (7B Model)</th>
+                                <th>Recommended (70B Model)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>GPU VRAM</td>
+                                <td>16GB+ (RTX 3060/4060 Ti)</td>
+                                <td>48GB+ (2x RTX 3090/4090)</td>
+                            </tr>
+                            <tr>
+                                <td>System RAM</td>
+                                <td>32GB DDR4</td>
+                                <td>128GB DDR5</td>
+                            </tr>
+                            <tr>
+                                <td>Storage</td>
+                                <td>50GB NVMe SSD</td>
+                                <td>500GB Enterprise NVMe</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-6 ps-md-5">
+                    <h3>Business Impact</h3>
+                    <div class="mt-4">
+                        <div class="mb-4">
+                            <h6 class="text-accent">Risk Mitigation</h6>
+                            <p class="small text-light">설계 도면, 금융 데이터, 인사 정보 등 민감 데이터가 외부로 전송되는 사고를 원천 방지하여 기업의 법적/재무적
+                                리스크를 제거합니다.</p>
+                        </div>
+                        <div class="mb-4">
+                            <h6 class="text-accent">Custom Fine-Tuning</h6>
+                            <p class="small text-light">사내 문서로 모델을 미세조정(Fine-Tuning)하여 우리 회사만의 용어와 문맥을 이해하는 전용 AI 비서를 만들
+                                수 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer py-5 mt-5 border-top border-glass">
+        <div class="container text-center">
+            <p class="small text-muted">&copy; 2025 AiNex Security Laboratory. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

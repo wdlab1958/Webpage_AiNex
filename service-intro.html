@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서비스 소개 | AiNex</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .modal-content {
+            background-color: #0a0c10 !important;
+            background: #0a0c10 !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: #ffffff !important;
+        }
+
+        .modal-header,
+        .modal-footer {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .modal-text {
+            color: #adb5bd !important;
+        }
+
+        .modal-section-title {
+            color: #4f91ff !important;
+        }
+
+        .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%) !important;
+        }
+    </style>
+    <style>
+        .page-header {
+            padding: 150px 0 80px;
+            background: radial-gradient(circle at 50% 0%, rgba(79, 145, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .service-feature {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas-container"></div>
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><span class="brand-accent">Ai</span>Nex</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item active"><a class="nav-link" href="service-intro.html">서비스 소개</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ai-matching.html">AI 매칭</a></li>
+                    <li class="nav-item"><a class="nav-link" href="community.html">커뮤니티</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal"
+                            data-bs-target="#guideModal">가이드북</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary-glow" href="#" data-bs-toggle="modal" data-bs-target="#signupModal">무료
+                            진단하기</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header text-center">
+        <div class="container">
+            <h1 class="hero-title"><span class="text-gradient">AiNex 서비스 소개</span></h1>
+            <p class="hero-subtitle">전문 컨설턴트 수준의 AX 전략을 시스템이 자동으로 수립합니다.</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="service-feature">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title text-start">지능형 5-Agent 협업 시스템</h2>
+                    <p class="text-secondary">AiNex의 핵심은 상호 작용하는 5명의 전문 AI 에이전트입니다. 전략 분석가부터 리포트 생성기까지, 각 분야의 전문 지식을 갖춘
+                        에이전트들이 복잡한 AX 문제를 단계별로 해결합니다.</p>
+                    <ul class="list-unstyled mt-4 text-secondary">
+                        <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i> 실시간 시장 트렌드 반영</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i> 기업별 맞춤형 Use Case 발굴</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle text-primary me-2"></i> 데이터 기반 ROI 예측</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="assets/images/agent_structure.jpg?v=2" alt="Agent Collaboration Structure"
+                        class="img-fluid rounded-4 shadow-lg border border-glass floating-3d"
+                        style="max-height: 400px; width: auto; box-shadow: 0 0 30px rgba(79, 145, 255, 0.2);">
+                </div>
+            </div>
+        </div>
+
+        <div class="service-feature">
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-lg-6">
+                    <h2 class="section-title text-start">보안 중심 하이브리드 LLM</h2>
+                    <p class="text-secondary">기업의 데이터 자산은 절대 유출되어서는 안 됩니다. AiNex는 폐쇄망 기반 로컬 LLM과 고성능 클라우드 LLM을 결합한 하이브리드
+                        추론 환경을 통해 완벽한 보안을 제공합니다.</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="icon-box mx-auto" style="width: 120px; height: 120px; font-size: 3rem;">
+                        <i class="bi bi-shield-lock"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer py-5 border-top border-glass mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5 class="footer-brand"><span class="text-primary">Ai</span>Nex</h5>
+                    <p class="small text-secondary mt-3">AX/MAX Consulting Assistant & Analyst Platform</p>
+                </div>
+                <div class="col-md-8 text-md-end">
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="#" class="ms-3" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy
+                            Policy</a>
+                        <a href="#" class="ms-3" data-bs-toggle="modal" data-bs-target="#termsModal">Terms of
+                            Service</a>
+                        <a href="#" class="ms-3" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a>
+                    </div>
+                    <p class="small text-muted mt-3">&copy; 2025 AiNex. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Privacy Policy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Privacy Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="modal-section-title">개인정보 처리방침</h6>
+                    <p class="modal-text">AiNex는 사용자의 개인정보를 소중하게 생각하며, 관련 법규를 준수합니다. 본 방침은 당사 플랫폼 서비스를 이용함에 있어 제공되는
+                        개인정보가 어떻게 처리되는지 안내합니다.</p>
+                    <h6 class="modal-section-title">1. 수집하는 개인정보 항목</h6>
+                    <p class="modal-text">컨설팅 서비스 제공을 위해 다음과 같은 정보를 수집할 수 있습니다: 기업명, 담당자 이름, 연락처, 이메일 주소, 기업 인프라 현황 데이터
+                        등.</p>
+                    <h6 class="modal-section-title">2. 개인정보 수집 및 이용 목적</h6>
+                    <p class="modal-text">수집된 정보는 AI 전환 컨설팅 리포트 생성, 맞춤형 아키텍처 설계, 고객 지원 및 서비스 개선 목적으로만 사용됩니다.</p>
+                    <h6 class="modal-section-title">3. 보안 및 데이터 보호 (Local LLM)</h6>
+                    <p class="modal-text">AiNex는 보안형 하이브리드 LLM 아키텍처를 기반으로 합니다. 핵심 기업 데이터는 사내 폐쇄망 내 Local LLM(Ollama)에서
+                        처리되어 외부 유출을 원천적으로 차단합니다.</p>
+                    <h6 class="modal-section-title">4. 개인정보의 보유 및 이용기간</h6>
+                    <p class="modal-text">원칙적으로 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를 지체 없이 파기합니다. 단, 관계 법령에 의해 보존할 필요가 있는 경우
+                        일정 기간 보관합니다.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary-glow" data-bs-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms of Service Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Terms of Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="modal-section-title">서비스 이용약관</h6>
+                    <p class="modal-text">본 약관은 AiNex 플랫폼이 제공하는 모든 서비스 및 관련 기능의 이용 조건과 절차에 관한 사항을 규정합니다.</p>
+                    <h6 class="modal-section-title">1. 서비스의 목적</h6>
+                    <p class="modal-text">당사는 최신 AI 기술을 활용하여 기업의 성공적인 AI 전환(AX)을 돕기 위한 분석 및 설계 가이드를 제공합니다.</p>
+                    <h6 class="modal-section-title">2. AI 생성 결과물의 책임 제한</h6>
+                    <p class="modal-text">AiNex의 멀티 에이전트 시스템이 생성하는 컨설팅 리포트 및 아키텍처 가이드는 데이터에 기반한 제안이며, 최종적인 기술 도입 및 비즈니스
+                        결정은 사용자의 전문가 검토를 거쳐야 합니다.</p>
+                    <h6 class="modal-section-title">3. 지식재산권</h6>
+                    <p class="modal-text">플랫폼 내의 모든 디자인, 로직, 에이전트 프레임워크에 대한 권리는 AiNex에 귀속됩니다.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary-glow" data-bs-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contact Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="modal-section-title">문의하기</h6>
+                    <p class="modal-text mb-4">AiNex의 AX 솔루션에 대해 궁금한 점이 있으시면 언제든 연락주세요.</p>
+                    <div class="contact-info-item">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span class="modal-text">support@ainex.ai</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span class="modal-text">서울특별시 영등포구 선유로9가 10 문래SK V1 1710호</span>
+                    </div>
+                    <div class="contact-info-item">
+                        <i class="bi bi-telephone-fill"></i>
+                        <span class="modal-text">02-6952-2511 (대표전화)</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary-glow" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

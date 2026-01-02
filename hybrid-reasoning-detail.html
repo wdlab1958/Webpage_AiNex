@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Reasoning (RAG) | AiNex</title>
+    <meta name="description" content="AiNex의 Hybrid Reasoning 및 지능형 라우팅 시스템 상세 설명 페이지입니다.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%234f91ff'/%3E%3Ctext x='50' y='65' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EAN%3C/text%3E%3C/svg%3E">
+
+    <!-- CDNs -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .detail-hero {
+            padding-top: 150px;
+            padding-bottom: 80px;
+            background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            /* Success/Green glow */
+        }
+
+        .tech-specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            height: 100%;
+        }
+
+        .tech-card h4 {
+            color: var(--success);
+            /* Green for success */
+            margin-bottom: 1rem;
+        }
+
+        .breadcrumb-custom {
+            margin-bottom: 2rem;
+        }
+
+        .breadcrumb-custom a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb-custom span {
+            color: var(--success);
+            font-size: 0.9rem;
+        }
+
+        .feature-icon-large {
+            font-size: 3rem;
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--success);
+        }
+
+        .flow-step .step-num {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--success);
+            margin-right: 1.5rem;
+            width: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="canvas-container"></div>
+
+    <nav class="navbar navbar-expand-lg fixed-top glass-nav">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <span class="brand-accent">Ai</span>Nex
+            </a>
+            <div class="ms-auto">
+                <a href="index.html" class="btn btn-outline-light btn-sm">
+                    <i class="bi bi-arrow-left me-2"></i>메인으로 돌아가기
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container detail-hero">
+        <div class="breadcrumb-custom">
+            <a href="index.html">Home</a> / <span>Hybrid Reasoning</span>
+        </div>
+
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-8">
+                <h1 class="hero-title mb-4">Hybrid Reasoning<br><span style="color: var(--success);">Intelligent Routing
+                        System</span></h1>
+                <p class="lead text-secondary mb-4">
+                    보안과 효율성, 두 마리 토끼를 잡는 스마트한 AI 의사결정 시스템.<br>
+                    데이터의 민감도와 작업의 복잡성을 분석하여, Local LLM과 Cloud LLM 중 최적의 경로를 자동으로 선택합니다.
+                </p>
+                <div class="d-flex gap-3">
+                    <div class="badge-item bg-opacity-10 border-success text-success">Smart Routing</div>
+                    <div class="badge-item">Cost Optimized</div>
+                </div>
+            </div>
+            <div class="col-lg-4 text-center">
+                <i class="bi bi-diagram-2 feature-icon-large" style="font-size: 10rem; opacity: 0.8;"></i>
+            </div>
+        </div>
+
+        <hr class="my-5 border-secondary opacity-25">
+
+        <section class="mt-5">
+            <h2 class="section-title text-start mb-5">How It Works: The Decision Logic</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="flow-step">
+                        <div class="step-num">1</div>
+                        <div>
+                            <h5 class="text-white mb-1">Request Analysis</h5>
+                            <p class="small text-secondary mb-0">사용자의 프롬프트가 입력되면 PII(개인정보) 감지기 및 키워드 분류기가 먼저 작동하여 데이터의
+                                성격을 파악합니다.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">2</div>
+                        <div>
+                            <h5 class="text-white mb-1">Classification & Routing</h5>
+                            <p class="small text-secondary mb-0">보안 등급(High/Low)과 난이도(Complex/Simple) 매트릭스에 따라 실행될 모델을
+                                결정합니다.</p>
+                        </div>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-num">3</div>
+                        <div>
+                            <h5 class="text-white mb-1">Execution & Synthesis</h5>
+                            <p class="small text-secondary mb-0">Local LLM은 보안 데이터를, Cloud LLM은 최신 정보를 처리하며, 최종적으로
+                                Orchestrator가 결과를 통합하여 사용자에게 전달합니다.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div
+                        class="glass-card p-4 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+                        <h4 class="mb-4">Routing Decision Matrix</h4>
+                        <div class="table-responsive w-100">
+                            <table class="table table-dark table-bordered small">
+                                <thead>
+                                    <tr>
+                                        <th>Security / Complexity</th>
+                                        <th>High Complexity</th>
+                                        <th>Low Complexity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="text-danger fw-bold">Sensitive Data</td>
+                                        <td class="bg-primary bg-opacity-10">Local LLM (70B)</td>
+                                        <td class="bg-primary bg-opacity-10">Local LLM (7B)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-success fw-bold">Public Data</td>
+                                        <td class="bg-success bg-opacity-10">Cloud LLM (GPT-4)</td>
+                                        <td class="bg-success bg-opacity-10">Cloud LLM (GPT-3.5)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="text-muted mt-3 small">* 비용 효율과 데이터 보안을 동시에 만족하는 최적의 모델 할당</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 mt-5 bg-card rounded-4 p-5 border border-glass">
+            <div class="row">
+                <div class="col-md-6 bordered-end">
+                    <h3>Strategic Benefits</h3>
+                    <div class="tech-specs-grid mt-0" style="grid-template-columns: 1fr; gap: 1.5rem;">
+                        <div class="d-flex align-items-start mt-4">
+                            <i class="bi bi-wallet2 text-success fs-3 me-3"></i>
+                            <div>
+                                <h5 class="text-white">Significant Cost Reduction</h5>
+                                <p class="text-secondary small">모든 쿼리를 비싼 상용 API(GPT-4 등)로 처리하지 않고, 단순 업무는 경량 로컬 모델이
+                                    처리하여 API 비용을 최대 60%까지 절감합니다.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-speedometer2 text-success fs-3 me-3"></i>
+                            <div>
+                                <h5 class="text-white">Low Latency Performance</h5>
+                                <p class="text-secondary small">네트워크 라운드트립이 없는 로컬 추론을 통해, 단순 질의응답이나 사내 검색 기능에서 즉각적인 반응
+                                    속도(Latency < 200ms)를 제공합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 ps-md-5">
+                    <h3>Use Case Scenarios</h3>
+                    <ul class="list-group list-group-flush bg-transparent mt-4">
+                        <li class="list-group-item bg-transparent text-light border-secondary ps-0">
+                            <i class="bi bi-check-lg text-success me-2"></i>
+                            <strong>재무 보고서 요약:</strong> 매출 데이터(보안)는 Local LLM이 처리하고, 시장 동향(공개)은 Cloud LLM이 검색하여 결합.
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary ps-0">
+                            <i class="bi bi-check-lg text-success me-2"></i>
+                            <strong>코드 리뷰:</strong> 사내 핵심 알고리즘은 Local에서 검토, 일반적인 라이브러리 사용법은 Cloud에서 최신 정보 참조.
+                        </li>
+                        <li class="list-group-item bg-transparent text-light border-secondary ps-0">
+                            <i class="bi bi-check-lg text-success me-2"></i>
+                            <strong>고객 민원 분류:</strong> 개인 정보가 포함된 민원은 Local에서 분류 및 마스킹 후, 일반적인 답변 템플릿만 Cloud가 생성.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer py-5 mt-5 border-top border-glass">
+        <div class="container text-center">
+            <p class="small text-muted">&copy; 2025 AiNex Security Laboratory. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.149.0/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
