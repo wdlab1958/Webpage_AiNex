@@ -140,3 +140,13 @@
 127.0.0.1 - - [02/Jan/2026 22:07:58] "GET /style.css HTTP/1.1" 200 -
 127.0.0.1 - - [02/Jan/2026 22:07:58] "GET /assets/images/hero_bg.png HTTP/1.1" 200 -
 127.0.0.1 - - [02/Jan/2026 22:07:58] "GET /script.js HTTP/1.1" 200 -
+127.0.0.1 - - [02/Jan/2026 22:32:48] "GET /style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jan/2026 22:32:48] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jan/2026 22:33:02] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jan/2026 22:33:28] "GET /local-llm-detail.html HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jan/2026 22:37:54] "GET /style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jan/2026 22:37:54] "GET /script.js HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jan/2026 22:37:57] "GET /hybrid-reasoning-detail.html HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jan/2026 22:46:04] "GET /index.html HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jan/2026 22:46:04] "GET /style.css HTTP/1.1" 304 -
+127.0.0.1 - - [02/Jan/2026 22:46:04] "GET /script.js HTTP/1.1" 304 -
