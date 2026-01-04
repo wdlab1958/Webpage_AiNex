@@ -312,73 +312,200 @@ window.addEventListener('hashchange', () => setTimeout(() => ScrollTrigger.refre
 const injectGuideModal = () => {
     if (document.getElementById('guideModal')) return;
 
+    const guidebookFiles = [
+        { name: 'AiNex Strategic Compass', file: 'AiNex_Consulting_Strategic_Compass.pdf', desc: 'A3_AiNex_The_Self_Consulting_Strategic_Compass.pdf' },
+        { name: 'Vol.1 Framework', file: 'AiNex_Framwork_vol_1.pdf', desc: 'AiNex_이용자 메뉴얼 해설집_Framwork(vol_1).pdf' },
+        { name: 'Vol.2 ISO 42001', file: 'AiNex_ISO42001_vol_2.pdf', desc: 'AiNex_이용자 메뉴얼 해설집_ISO42001(vol_2).pdf' },
+        { name: 'Vol.3 ISO 38500', file: 'AiNex_ISO38500_vol_3.pdf', desc: 'AiNex_이용자 메뉴얼 해설집_ISO38500(vol_3).pdf' },
+        { name: 'Vol.4 ISO 24030', file: 'AiNex_ISO24030_vol_4.pdf', desc: 'AiNex_이용자 메뉴얼 해설집_ISO24030(vol_4).pdf' },
+        { name: 'Vol.5 ISO 23053', file: 'AiNex_ISO23053_vol_5.pdf', desc: 'AiNex_이용자 메뉴얼 해설집_ISO23053(vol_5).pdf' },
+        { name: 'AiNex Workflow', file: 'AiNex_Workflow.pdf', desc: 'AiNex 설계 개념 및 워크플로우.pdf' },
+        { name: 'AiNex 3 Key Points', file: 'AiNex_AI_3 Key Point.pdf', desc: 'AiNex_AI_3 Key Point.pdf' },
+        { name: 'Trust Transformation', file: 'AI_Transformation_Built_on_Trust.pdf', desc: 'AI_Transformation_Built_on_Trust.pdf' },
+        { name: 'Consulting Agent Platform', file: 'AI_Consulting_Agent_Platform.pdf', desc: 'AI_Consulting_Agent_Platform.pdf' },
+        { name: 'Governance Mastery', file: 'AiNex_AI_Governance_Mastery.pdf', desc: 'AiNex_AI_Governance_Mastery.pdf' }
+    ];
+
+    let fileListHtml = '';
+    guidebookFiles.forEach(item => {
+        fileListHtml += `
+        <div class="p-3 border-secondary bg-dark bg-opacity-50 rounded border d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-file-earmark-pdf-fill text-danger fs-4 me-3"></i>
+                <div>
+                    <div class="fw-bold text-white">${item.name}</div>
+                    <div class="small text-muted" style="font-size: 0.75rem;">${item.desc}</div>
+                </div>
+            </div>
+            <div class="d-flex gap-2">
+                <button onclick="window.open('downloads/${item.file}', '_blank')" class="btn btn-sm btn-outline-light" title="미리보기">
+                    <i class="bi bi-eye"></i>
+                </button>
+                <a href="downloads/${item.file}" download class="btn btn-sm btn-outline-light" title="다운로드">
+                    <i class="bi bi-download"></i>
+                </a>
+            </div>
+        </div>`;
+    });
+
     const modalHtml = `
     <div class="modal fade" id="guideModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content text-white" style="background-color: #0d1117; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);">
                 <div class="modal-header border-0 pb-0">
                     <h5 class="modal-title fw-bold"><i class="bi bi-book-half me-2 text-primary"></i>AiNex 가이드북 다운로드</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-4">
-                    <p class="text-muted small mb-4">AiNex 이용자 메뉴얼 해설집을 다운로드하실 수 있습니다.</p>
-                    <div class="d-grid gap-3">
-                        <a href="downloads/AiNex_이용자 메뉴얼 해설집_Framwork(vol_1).pdf" download class="btn btn-outline-light text-start p-3 border-secondary bg-dark bg-opacity-50">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-file-earmark-pdf-fill text-danger fs-4 me-3"></i>
-                                <div>
-                                    <div class="fw-bold">Vol.1 Framework</div>
-                                    <div class="small text-muted" style="font-size: 0.75rem;">AiNex_이용자 메뉴얼 해설집_Framwork(vol_1).pdf</div>
-                                </div>
-                                <i class="bi bi-download ms-auto text-secondary"></i>
-                            </div>
-                        </a>
-                        <a href="downloads/AiNex_이용자 메뉴얼 해설집_ISO42001(vol_2).pdf" download class="btn btn-outline-light text-start p-3 border-secondary bg-dark bg-opacity-50">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-file-earmark-pdf-fill text-danger fs-4 me-3"></i>
-                                <div>
-                                    <div class="fw-bold">Vol.2 ISO 42001</div>
-                                    <div class="small text-muted" style="font-size: 0.75rem;">AiNex_이용자 메뉴얼 해설집_ISO42001(vol_2).pdf</div>
-                                </div>
-                                <i class="bi bi-download ms-auto text-secondary"></i>
-                            </div>
-                        </a>
-                        <a href="downloads/AiNex_이용자 메뉴얼 해설집_ISO38500(vol_3).pdf" download class="btn btn-outline-light text-start p-3 border-secondary bg-dark bg-opacity-50">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-file-earmark-pdf-fill text-danger fs-4 me-3"></i>
-                                <div>
-                                    <div class="fw-bold">Vol.3 ISO 38500</div>
-                                    <div class="small text-muted" style="font-size: 0.75rem;">AiNex_이용자 메뉴얼 해설집_ISO38500(vol_3).pdf</div>
-                                </div>
-                                <i class="bi bi-download ms-auto text-secondary"></i>
-                            </div>
-                        </a>
-                        <a href="downloads/AiNex_이용자 메뉴얼 해설집_ISO24030(vol_4).pdf" download class="btn btn-outline-light text-start p-3 border-secondary bg-dark bg-opacity-50">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-file-earmark-pdf-fill text-danger fs-4 me-3"></i>
-                                <div>
-                                    <div class="fw-bold">Vol.4 ISO 24030</div>
-                                    <div class="small text-muted" style="font-size: 0.75rem;">AiNex_이용자 메뉴얼 해설집_ISO24030(vol_4).pdf</div>
-                                </div>
-                                <i class="bi bi-download ms-auto text-secondary"></i>
-                            </div>
-                        </a>
-                        <a href="downloads/AiNex_이용자 메뉴얼 해설집_ISO23053(vol_5).pdf" download class="btn btn-outline-light text-start p-3 border-secondary bg-dark bg-opacity-50">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-file-earmark-pdf-fill text-danger fs-4 me-3"></i>
-                                <div>
-                                    <div class="fw-bold">Vol.5 ISO 23053</div>
-                                    <div class="small text-muted" style="font-size: 0.75rem;">AiNex_이용자 메뉴얼 해설집_ISO23053(vol_5).pdf</div>
-                                </div>
-                                <i class="bi bi-download ms-auto text-secondary"></i>
-                            </div>
-                        </a>
+                    <p class="text-muted small mb-4">AiNex 이용자 메뉴얼 해설집을 다운로드하거나 미리보실 수 있습니다.</p>
+                    <div class="d-grid gap-3" style="max-height: 500px; overflow-y: auto;">
+                        ${fileListHtml}
                     </div>
                 </div>
             </div>
         </div>
     </div>`;
     document.body.insertAdjacentHTML('beforeend', modalHtml);
+};
+
+/* PDF Viewer Modal Injection & Logic */
+let pdfDoc = null;
+let pageNum = 1;
+let pageRendering = false;
+let pageNumPending = null;
+let scale = 1.0;
+let canvas, ctx;
+
+const injectPdfViewerModal = () => {
+    if (document.getElementById('pdfViewerModal')) return;
+
+    const modalHtml = `
+    <div class="modal fade" id="pdfViewerModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-bottom border-secondary py-2">
+                    <h5 class="modal-title fs-6"><i class="bi bi-file-pdf me-2 text-danger"></i>PDF Viewer</h5>
+                    <div class="d-flex align-items-center gap-3 mx-auto">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changePage(-1)"><i class="bi bi-chevron-left"></i></button>
+                        <span class="small">Page <span id="pdf-page-num">1</span> / <span id="pdf-page-count">--</span></span>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="changePage(1)"><i class="bi bi-chevron-right"></i></button>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0 d-flex justify-content-center align-items-center bg-black position-relative" style="overflow: auto;">
+                    <div id="pdf-loader" class="position-absolute">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                    <canvas id="pdf-render"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>`;
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+    canvas = document.getElementById('pdf-render');
+    ctx = canvas.getContext('2d');
+};
+
+/* Helper utility to load PDF.js dynamically if needed */
+const loadPdfJs = () => {
+    return new Promise((resolve, reject) => {
+        if (window.pdfjsLib) {
+            resolve();
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';
+        script.onload = () => {
+            window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+            resolve();
+        };
+        script.onerror = () => reject(new Error('Failed to load PDF.js library'));
+        document.head.appendChild(script);
+    });
+};
+
+const openPdfViewer = async (url) => {
+    try {
+        await loadPdfJs();
+    } catch (error) {
+        console.error(error);
+        alert('PDF 뷰어 라이브러리를 로드하는데 실패했습니다. 인터넷 연결을 확인해주세요.');
+        return;
+    }
+
+    const viewerModal = new bootstrap.Modal(document.getElementById('pdfViewerModal'));
+    viewerModal.show();
+
+    // Reset state
+    pdfDoc = null;
+    pageNum = 1;
+    scale = 1.2; // Default scale
+    document.getElementById('pdf-loader').classList.remove('d-none');
+    if (canvas) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        canvas.height = 0;
+    }
+
+    // Load PDF
+    pdfjsLib.getDocument(url).promise.then((pdfDoc_) => {
+        pdfDoc = pdfDoc_;
+        document.getElementById('pdf-page-count').textContent = pdfDoc.numPages;
+        renderPage(pageNum);
+        document.getElementById('pdf-loader').classList.add('d-none');
+    }).catch(err => {
+        console.error('Error loading PDF:', err);
+        document.getElementById('pdf-loader').classList.add('d-none');
+        alert('PDF를 불러오는 중 오류가 발생했습니다.');
+        viewerModal.hide();
+    });
+};
+
+const renderPage = (num) => {
+    pageRendering = true;
+    // Fetch page
+    pdfDoc.getPage(num).then((page) => {
+        const viewport = page.getViewport({ scale: scale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+            canvasContext: ctx,
+            viewport: viewport
+        };
+        const renderTask = page.render(renderContext);
+
+        // Wait for render to finish
+        renderTask.promise.then(() => {
+            pageRendering = false;
+            if (pageNumPending !== null) {
+                renderPage(pageNumPending);
+                pageNumPending = null;
+            }
+        });
+    });
+
+    // Update page counters
+    document.getElementById('pdf-page-num').textContent = num;
+};
+
+const queueRenderPage = (num) => {
+    if (pageRendering) {
+        pageNumPending = num;
+    } else {
+        renderPage(num);
+    }
+};
+
+window.changePage = (offset) => {
+    if (!pdfDoc) return;
+    const newPage = pageNum + offset;
+    if (newPage >= 1 && newPage <= pdfDoc.numPages) {
+        pageNum = newPage;
+        queueRenderPage(pageNum);
+    }
 };
 
 /* Load More Discussions Logic */
