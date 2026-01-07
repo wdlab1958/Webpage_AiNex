@@ -389,25 +389,88 @@
                                 Expert</span>
                         </div>
                         <div class="answer-content text-light">
-                            <p>안녕하세요. 현업에서 70B급 모델을 온프레미스로 구축할 때 가장 많이 고민하시는 부분이네요. 결론부터 말씀드리면 <strong>AWQ
-                                    (Activation-aware Weight Quantization) 4-bit</strong>를 추천드립니다.</p>
+                            <p>Llama-3 70B와 같은 거대 모델을 로컬 환경에서 서빙할 때, <strong>'최적'의 양자화 기법은 사용 가능한 하드웨어(GPU VRAM 용량, 브랜드)와 사용 목적(단일 사용자 vs 다중 접속 서빙)</strong>에 따라 결정됩니다.</p>
+                            <p>가장 널리 사용되고 검증된 <strong>3가지 주요 기법(EXL2, GGUF, AWQ)</strong>을 중심으로 분석해 드립니다.</p>
 
-                            <h6 class="text-primary mt-4">1. AWQ vs GPTQ 비교</h6>
+                            <h6 class="text-primary mt-4">1. NVIDIA GPU 단독 사용 시 (성능 최우선): EXL2 (ExLlamaV2)</h6>
+                            <p>현재 NVIDIA GPU(3090, 4090 등)를 사용 중이라면 <strong>가장 추천하는 방식</strong>입니다.</p>
                             <ul class="mb-3 text-secondary">
-                                <li><strong>정확도(Perplexity):</strong> AWQ는 중요 가중치(Salient weights)를 보호하는 알고리즘 덕분에 GPTQ보다
-                                    약 2~3% 더 나은 PPL을 보여줍니다. 특히 한국어와 같이 토큰 밀도가 높은 언어에서 문맥 유지력이 우수합니다.</li>
-                                <li><strong>VRAM 효율:</strong> 4-bit 양자화 시 70B 모델은 약 35~40GB의 VRAM을 점유합니다. RTX 4090
-                                    2장(NVLink 권장, 없어도 파이프라인 병렬화 가능)이면 충분히 구동 가능합니다.</li>
+                                <li><strong>특징:</strong> 기존 GPTQ 방식보다 더 빠르고 효율적입니다. 특히 <strong>가변 비트레이트(Variable Bitrate)</strong>를 지원하여, 모델의 중요 레이어는 높은 비트로, 덜 중요한 레이어는 낮은 비트로 압축해 화질(Perplexity) 저하를 최소화합니다.</li>
+                                <li><strong>장점:</strong> 압도적인 추론 속도(현존 로컬 로더 중 가장 빠름), 정교한 VRAM 맞춤(4.0bpw, 4.65bpw, 5.0bpw 등 소수점 단위)</li>
+                                <li><strong>단점:</strong> NVIDIA GPU에서만 작동하며, 초기 로딩 시 VRAM 파편화 이슈가 발생할 수 있습니다.</li>
                             </ul>
 
-                            <h6 class="text-primary mt-4">2. vLLM과의 호환성</h6>
-                            <p>vLLM 최신 버전(0.4.x 이상)은 AWQ 커널 최적화가 매우 잘 되어 있습니다. `quantization="awq"` 옵션을 주었을 때, GPTQ 대비 약
-                                1.5배 빠른 토큰 생성 속도(TPS)를 기대할 수 있습니다.</p>
+                            <h6 class="text-primary mt-4">2. Mac(Apple Silicon) 또는 CPU/GPU 혼용 시 (호환성 최우선): GGUF (llama.cpp)</h6>
+                            <p>Mac Studio(M1/M2/M3 Ultra)를 사용하거나, VRAM이 부족하여 시스템 RAM을 끌어다 써야 하는 경우(Offloading) 표준입니다.</p>
+                            <ul class="mb-3 text-secondary">
+                                <li><strong>특징:</strong> CPU와 GPU 간의 레이어 오프로딩(Offloading)에 최적화되어 있습니다.</li>
+                                <li><strong>장점:</strong> 범용성(거의 모든 하드웨어에서 구동 가능), K-Quant 기법(Q4_K_M, Q5_K_M 등)으로 동일 비트 수 대비 성능 하락이 적습니다.</li>
+                                <li><strong>단점:</strong> 순수 GPU 기반인 EXL2나 AWQ에 비해 토큰 생성 속도(t/s)가 느립니다.</li>
+                            </ul>
+
+                            <h6 class="text-primary mt-4">3. 프로덕션 서빙 및 vLLM 사용 시 (안정성 최우선): AWQ</h6>
+                            <p>개인 사용이 아니라 API 서버(vLLM, TGI 등)를 구축하여 서비스하려는 경우에 적합합니다.</p>
+                            <ul class="mb-3 text-secondary">
+                                <li><strong>특징:</strong> 가중치(Weight)뿐만 아니라 활성화(Activation) 값의 중요도를 고려하여 양자화합니다.</li>
+                                <li><strong>장점:</strong> vLLM에서 기본적으로 가장 잘 지원하는 포맷, 준수한 속도와 성능(GPTQ보다 나은 성능, 처리량 우수)</li>
+                            </ul>
+
+                            <h6 class="text-primary mt-4">기법별 비교 요약</h6>
+                            <div class="table-responsive mb-4">
+                                <table class="table table-dark table-bordered small">
+                                    <thead>
+                                        <tr>
+                                            <th>특성</th>
+                                            <th>EXL2 (ExLlamaV2)</th>
+                                            <th>GGUF (llama.cpp)</th>
+                                            <th>AWQ</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>주요 타겟</strong></td>
+                                            <td>NVIDIA GPU (Hardcore)</td>
+                                            <td>Mac / Low VRAM / CPU</td>
+                                            <td>Production / vLLM</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>추론 속도</strong></td>
+                                            <td class="text-warning">가장 빠름</td>
+                                            <td>보통</td>
+                                            <td class="text-info">빠름</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>VRAM 효율</strong></td>
+                                            <td class="text-warning">미세 조정 가능</td>
+                                            <td>RAM 혼용 가능</td>
+                                            <td>고정 비트</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>화질(PPL)</strong></td>
+                                            <td>매우 우수 (가변 비트)</td>
+                                            <td>우수 (K-Quants)</td>
+                                            <td>우수</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>추천 환경</strong></td>
+                                            <td>2x RTX 3090/4090</td>
+                                            <td>Mac Studio, 단일 GPU</td>
+                                            <td>H100/A100/A6000 서버</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h6 class="text-primary mt-4">Llama-3 70B를 위한 'Sweet Spot' 권장</h6>
+                            <p>Llama-3 70B 모델은 매개변수가 많아 양자화에 비교적 강건하지만, 너무 낮추면 성능이 급격히 떨어집니다.</p>
+                            <ul class="mb-3 text-secondary">
+                                <li><strong>VRAM 48GB (예: 2x 3090/4090 NVLink/PCIe):</strong> <span class="text-warning">EXL2 4.65bpw</span> (또는 4.0bpw) - 약 40~42GB VRAM을 차지하며, 8K~16K 컨텍스트를 유지하면서도 FP16 원본과 구별하기 힘든 성능</li>
+                                <li><strong>Mac Studio (Unified Memory 64GB 이상):</strong> <span class="text-info">GGUF Q4_K_M</span> 또는 Q5_K_M - Q4_K_M(약 43GB)이 속도와 성능의 균형이 가장 좋습니다.</li>
+                                <li><strong>VRAM 24GB (단일 카드):</strong> <span class="text-danger">불가</span> - 70B 모델은 24GB에 적재가 불가능합니다. Llama-3 8B를 쓰거나 CPU 오프로딩(GGUF)을 해야 하는데 속도가 매우 느립니다.</li>
+                            </ul>
 
                             <div class="alert alert-dark border-primary mt-3">
-                                <i class="bi bi-terminal me-2"></i><strong>Recommendation:</strong> 한국어 품질이 중요하다면
-                                EXL2(ExLlamaV2) 포맷도 고려해볼 만하지만, 상용 서빙 안정성 측면에서는 <strong>vLLM + AWQ</strong> 조합이 현재로서는
-                                "Industry Standard"에 가깝습니다.
+                                <i class="bi bi-lightbulb me-2"></i><strong>결론:</strong> RTX 4090 2장(48GB VRAM)을 사용하신다면 <strong>EXL2 4.65bpw</strong>가 성능 면에서 최적입니다. 다만 vLLM 기반 프로덕션 서빙을 원하신다면 <strong>AWQ 4-bit</strong>도 안정적인 선택입니다.
                             </div>
                         </div>
                         <div

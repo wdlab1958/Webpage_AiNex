@@ -93,8 +93,7 @@
                     </p>
                     <div class="hero-cta">
                         <a href="http://localhost:8001/" class="btn btn-main text-decoration-none">AI 컨설팅 시작</a>
-                        <button class="btn btn-outline-light ms-3"
-                            onclick="location.href='architecture-guide.html'">아키텍처 가이드</button>
+                        <a href="architecture-guide.html" class="btn btn-outline-light ms-3">아키텍처 가이드</a>
                     </div>
                 </div>
                 <div class="col-lg-5 position-relative d-none d-lg-block">
@@ -117,26 +116,28 @@
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-md-5">
-                    <div class="glass-card feature-card text-center p-4 cursor-pointer fade-in"
-                        onclick="location.href='local-llm-detail.html'">
-                        <div class="icon-box mb-3 mx-auto">
-                            <i class="bi bi-shield-check"></i>
+                    <a href="local-llm-detail.html" class="text-decoration-none text-light">
+                        <div class="glass-card feature-card text-center p-4 cursor-pointer fade-in">
+                            <div class="icon-box mb-3 mx-auto">
+                                <i class="bi bi-shield-check"></i>
+                            </div>
+                            <h3>Local LLM (Ollama)</h3>
+                            <p>사내 폐쇄망 환경에서 동작하여 핵심 데이터의 외부 유출을 원천적으로 차단합니다.</p>
+                            <span class="text-primary small">Learn more <i class="bi bi-chevron-right"></i></span>
                         </div>
-                        <h3>Local LLM (Ollama)</h3>
-                        <p>사내 폐쇄망 환경에서 동작하여 핵심 데이터의 외부 유출을 원천적으로 차단합니다.</p>
-                        <span class="text-primary small">Learn more <i class="bi bi-chevron-right"></i></span>
-                    </div>
+                    </a>
                 </div>
                 <div class="col-md-5">
-                    <div class="glass-card feature-card text-center p-4 cursor-pointer fade-in"
-                        onclick="location.href='hybrid-reasoning-detail.html'">
-                        <div class="icon-box mb-3 mx-auto">
-                            <i class="bi bi-cloud-check"></i>
+                    <a href="hybrid-reasoning-detail.html" class="text-decoration-none text-light">
+                        <div class="glass-card feature-card text-center p-4 cursor-pointer fade-in">
+                            <div class="icon-box mb-3 mx-auto">
+                                <i class="bi bi-cloud-check"></i>
+                            </div>
+                            <h3>Hybrid Reasoning</h3>
+                            <p>일반 정보는 Cloud LLM, 핵심 보안 데이터는 Local LLM이 처리하는 지능형 라우팅 시스템.</p>
+                            <span class="text-primary small">Learn more <i class="bi bi-chevron-right"></i></span>
                         </div>
-                        <h3>Hybrid Reasoning</h3>
-                        <p>일반 정보는 Cloud LLM, 핵심 보안 데이터는 Local LLM이 처리하는 지능형 라우팅 시스템.</p>
-                        <span class="text-primary small">Learn more <i class="bi bi-chevron-right"></i></span>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>

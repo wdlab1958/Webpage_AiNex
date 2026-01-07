@@ -106,9 +106,9 @@ const initAnimations = () => {
 
 /* SaaS Signup Modal Injection & Logic */
 const injectSignupModal = () => {
-    if (document.getElementById('signupModal')) return;
-
-    const modalHtml = `
+    // Inject HTML only if it doesn't exist
+    if (!document.getElementById('signupModal')) {
+        const modalHtml = `
     <div class="modal fade" id="signupModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content text-white" style="background-color: #0d1117; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; box-shadow: 0 25px 50px rgba(0,0,0,0.5);">
@@ -216,10 +216,16 @@ const injectSignupModal = () => {
             </div>
         </div>
     </div>`;
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
 
-    // Bind Submission
-    document.getElementById('signupForm').addEventListener('submit', handleSignup);
+    // Bind Submission (Crucial: Do this regardless of whether we injected HTML or it was already there)
+    const form = document.getElementById('signupForm');
+    if (form) {
+        // Remove existing listener to prevent duplicates if this function is called multiple times
+        form.removeEventListener('submit', handleSignup);
+        form.addEventListener('submit', handleSignup);
+    }
 };
 
 window.selectRole = (role) => {
