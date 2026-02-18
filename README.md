@@ -1,74 +1,89 @@
-# AiNex - AI Consulting & Analyst Platform
+# AiNex - AI Consulting Enterprise Platform (소개용 웹페이지)
 
-> **최종 업데이트**: 2026-01-10
+> **문서 버전**: 3.0
+> **최종 수정일**: 2026년 2월 18일
+> **Update Date**: Feb. 18, 2026
 
-AiNex는 AI 컨설팅 및 분석 서비스를 제공하는 웹 플랫폼입니다. 사용자가 AI 서비스를 이해하고, 적합한 솔루션을 매칭받으며, 커뮤니티를 통해 정보를 공유할 수 있도록 설계되었습니다.
+멀티 에이전트 기반 AI 컨설팅 엔터프라이즈 플랫폼 **AiNex**의 소개용 웹 페이지입니다.
 
-## 🌟 주요 기능 (Key Features)
+## 주요 기능 (Key Features)
 
-*   **몰입형 랜딩 페이지**: Three.js를 활용한 인터랙티브 3D 파티클 배경과 GSAP 기반의 스크롤 애니메이션으로 세련된 사용자 경험을 제공합니다.
-*   **반응형 디자인**: Bootstrap 5와 커스텀 CSS(Glassmorphism 스타일)를 사용하여 데스크탑 및 모바일 환경에 최적화되었습니다.
-*   **가이드북 다운로드 센터 (`community.html`)**:
-    *   다양한 AI 관련 기술 문서(PDF)를 제공합니다.
-    *   사용자는 파일을 **다운로드**하거나, **새 창에서 미리보기**를 할 수 있습니다.
-*   **커뮤니티 게시판**:
-    *   최신 토론 주제를 리스트 형태로 제공하며, '더보기(Load More)' 기능을 통해 추가 게시글을 동적으로 로드합니다.
-*   **상세 서비스 소개**:
-    *   AI 매칭, 서비스 소개, 아키텍처 가이드 등 각 분야별 상세 페이지를 제공합니다.
+*   **몰입형 랜딩 페이지**: Three.js를 활용한 인터랙티브 3D 파티클 배경과 GSAP 기반의 스크롤 애니메이션
+*   **7개 멀티 에이전트 프레임워크**: LangGraph, CrewAI, AutoGen, DSPy, LangChain, LlamaIndex, Native
+*   **SVG 아키텍처 다이어그램**: AiNex Orchestrator → 7 Frameworks → Ollama LLM 3계층 시각화
+*   **4대 ISO 표준 거버넌스**: ISO 42001, 23053, 24030, 38500
+*   **반응형 디자인**: Bootstrap 5와 Glassmorphism 스타일 (데스크탑/모바일 최적화)
+*   **가이드북 다운로드 센터**: 11종 PDF 문서 (다운로드/미리보기)
+*   **커뮤니티 게시판**: 최신 토론 주제 + '더보기(Load More)' 동적 로드
+*   **SaaS 가입 모달**: 3단계 회원가입 (역할 선택 → 정보 입력 → 플랜 선택)
 
-## 🛠️ 기술 스택 (Tech Stack)
+## 기술 스택 (Tech Stack)
 
-*   **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-*   **UI Framework**: Bootstrap 5.3.2
-*   **Animations & Graphics**:
-    *   [Three.js](https://threejs.org/) (3D 배경 효과)
-    *   [GSAP](https://gsap.com/) (스크롤 트리거 및 애니메이션)
-*   **Utilities**:
-    *   Bootstrap Icons
-    *   PDF.js (PDF 문서 처리 관련)
+| 분류 | 기술 |
+|------|------|
+| **Frontend** | HTML5, CSS3, JavaScript (ES6+) |
+| **UI Framework** | Bootstrap 5.3.2 |
+| **Animations** | Three.js (3D), GSAP + ScrollTrigger |
+| **PDF** | PDF.js (PDF 문서 뷰어) |
+| **Icons** | Bootstrap Icons 1.11.1 |
 
-## 📂 프로젝트 구조 (Project Structure)
+## AiNex 플랫폼 기술 스택 (Backend 참조)
+
+| 분류 | 기술 |
+|------|------|
+| **LLM** | Ollama (llama3.2:3b, Local) |
+| **멀티 에이전트** | LangGraph, CrewAI, AutoGen (AG2) |
+| **고급 프레임워크** | DSPy, LangChain (LCEL), LlamaIndex (RAG) |
+| **Native Orchestrator** | AiNex 자체 순차 오케스트레이터 (5 에이전트) |
+| **Backend** | FastAPI + Uvicorn, Python 3.12 |
+| **Database** | SQLite (aiosqlite) |
+| **API 엔드포인트** | 145개 |
+| **테스트 성공률** | 98.1% (106건 중 104건 통과) |
+
+## 프로젝트 구조 (Project Structure)
 
 ```
 webpage_AiNex/
-├── index.html                  # 메인 랜딩 페이지
-├── community.html              # 커뮤니티 및 가이드북 페이지
-├── service-intro.html          # 서비스 소개 페이지
-├── ai-matching.html            # AI 매칭 페이지
-├── architecture-guide.html     # 아키텍처 가이드 상세
-├── local-llm-detail.html       # 로컬 LLM 상세
-├── hybrid-reasoning-detail.html# 하이브리드 추론 상세
-├── script.js                   # 주요 인터랙션 및 로직 (모달, 애니메이션 등)
-├── style.css                   # 전역 스타일 정의
-├── assets/                     # 이미지 및 정적 리소스
-└── downloads/                  # 가이드북 PDF 파일 저장소
+├── index.html                    # 메인 랜딩 페이지 (7 프레임워크 소개)
+├── community.html                # 커뮤니티 및 가이드북 페이지
+├── service-intro.html            # 서비스 소개 페이지
+├── ai-matching.html              # AI 매칭 페이지
+├── architecture-guide.html       # 아키텍처 가이드 상세 (v3.0)
+├── local-llm-detail.html         # 로컬 LLM 상세
+├── hybrid-reasoning-detail.html  # 하이브리드 추론 상세
+├── security-detail.html          # 보안 아키텍처 상세
+├── script.js                     # 주요 인터랙션 및 로직
+├── style.css                     # 전역 스타일 정의
+├── assets/                       # 이미지 및 정적 리소스
+└── downloads/                    # 가이드북 PDF 파일 저장소 (11종)
 ```
 
-## 🚀 실행 방법 (Getting Started)
-
-이 프로젝트는 정적 웹사이트로 구성되어 있어, 간단한 정적 파일 서버로 실행할 수 있습니다.
-
-### Python 사용 시 (Recommended)
-프로젝트 루트 디렉토리에서 아래 명령어를 실행하세요.
+## 실행 방법 (Getting Started)
 
 ```bash
 # Python 3
 python3 -m http.server 8002
+
+# 또는 Node.js
+npx http-server -p 8002
 ```
 
 브라우저에서 `http://localhost:8002`로 접속하여 확인합니다.
 
-### Node.js (http-server) 사용 시
-```bash
-npx http-server -p 8002
-```
+## 주요 업데이트 내역
 
-## 📝 주요 업데이트 내역
+### 2026-02-18 (v3.0)
+*   7개 멀티 에이전트 프레임워크 반영 (LangGraph, CrewAI, AutoGen, DSPy, LangChain, LlamaIndex, Native)
+*   SVG 아키텍처 다이어그램 추가 (Orchestrator → 7 Frameworks → Ollama LLM)
+*   ISO 23053 추가 (4대 ISO 표준 완성)
+*   기술 스택 전면 업데이트 (llama3.2:3b, 145 API, 98.1% 테스트)
+*   아키텍처 가이드 v3.0 업데이트
+*   서비스 소개 페이지 7 프레임워크 반영
+*   전 페이지 Copyright 업데이트
 
 ### 2026-01-10
-*   **문서 정비**: README 파일 업데이트 및 프로젝트 정보 최신화.
+*   문서 정비, README 파일 업데이트 및 프로젝트 정보 최신화
 
-### 이전 업데이트
-*   **PDF 뷰어 개선**: 가이드북 미리보기 시 모달 겹침 현상을 해결하기 위해 브라우저 새 탭(`window.open`)에서 열리도록 변경.
-*   **네비게이션 개선**: Home 링크 클릭 시 현재 작업 흐름을 유지하기 위해 새 탭에서 열리도록 설정.
-*   **자료 업데이트**: 최신 AI 트렌드 및 거버넌스 관련 PDF 자료 4종 추가 (총 11종).
+---
+
+**Copyright &copy; 2025-2026 A3 Security Co.,Ltd. AITF Working Group. All Rights Reserved.**

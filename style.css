@@ -170,34 +170,66 @@ h5,
     font-size: 1.5rem;
 }
 
-/* Agent Mesh Diagram */
-.agent-mesh-wrapper {
-    position: relative;
-    width: 1000px;
-    height: 600px;
-    margin: 100px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Architecture SVG Diagram */
+.arch-diagram-wrapper {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    overflow-x: auto;
 }
 
-.mesh-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
+.arch-svg {
     width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-    overflow: visible;
+    height: auto;
+    min-width: 700px;
 }
 
-.mesh-line {
-    fill: none;
+.svg-node-orch {
+    fill: rgba(79, 145, 255, 0.2);
     stroke: var(--primary);
     stroke-width: 2;
-    stroke-dasharray: 8, 8;
-    opacity: 0.3;
+}
+
+.svg-text-orch {
+    fill: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Outfit', sans-serif;
+}
+
+.svg-node-fw {
+    fill: rgba(139, 92, 246, 0.15);
+    stroke: var(--accent);
+    stroke-width: 1.5;
+}
+
+.svg-text-fw {
+    fill: #e8eaed;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.svg-node-llm {
+    fill: rgba(16, 185, 129, 0.2);
+    stroke: var(--success);
+    stroke-width: 1.5;
+}
+
+.svg-text-llm {
+    fill: var(--success);
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+}
+
+.svg-conn {
+    stroke: rgba(255, 255, 255, 0.15);
+    stroke-width: 1;
+    stroke-dasharray: 4, 4;
     animation: dashOffset 30s linear infinite;
 }
 
@@ -205,119 +237,54 @@ h5,
     from {
         stroke-dashoffset: 500;
     }
-
     to {
         stroke-dashoffset: 0;
     }
 }
 
-.mesh-core {
-    width: 140px;
-    height: 140px;
-    background: rgba(79, 145, 255, 0.15);
-    border: 2px solid var(--primary);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
-    box-shadow: 0 0 40px var(--primary-glow);
+/* Framework Cards */
+.framework-card {
     text-align: center;
+    min-height: 200px;
 }
 
-.mesh-core i {
-    font-size: 2.5rem;
-    color: var(--primary);
-    margin-bottom: 5px;
-}
-
-.mesh-agent-node {
-    position: absolute;
-    width: 280px;
-    background: var(--bg-card);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--border-glass);
-    padding: 1.5rem;
-    border-radius: 20px;
-    z-index: 10;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    /* Initial state for GSAP */
-    opacity: 1;
-}
-
-.node-icon {
+.framework-card .fw-icon {
     font-size: 2rem;
     color: var(--primary);
 }
 
-.mesh-agent-node:hover {
-    border-color: var(--primary);
-    transform: translateY(-10px) !important;
-    background: rgba(79, 145, 255, 0.12);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+.framework-card .badge {
+    font-size: 0.7rem;
+    font-weight: 500;
 }
 
-/* Precise Positions for 1000x600 wrapper */
-.node-1 {
-    top: -20px;
-    left: 50%;
-    margin-left: -140px;
+.bg-accent {
+    background-color: var(--accent) !important;
+    color: white !important;
 }
 
-.node-2 {
-    top: 180px;
-    right: -80px;
+/* Agent Chips */
+.agent-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.6rem 1.2rem;
+    background: rgba(79, 145, 255, 0.08);
+    border: 1px solid rgba(79, 145, 255, 0.25);
+    border-radius: 50px;
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-.node-3 {
-    bottom: 20px;
-    right: 50px;
-}
-
-.node-4 {
-    bottom: 20px;
-    left: 50px;
-}
-
-.node-5 {
-    top: 180px;
-    left: -80px;
-}
-
-/* GSAP Compatibility */
-.agent-mesh-wrapper .mesh-agent-node {
-    pointer-events: all;
+.agent-chip:hover {
+    background: rgba(79, 145, 255, 0.15);
+    transform: translateY(-2px);
 }
 
 @media (max-width: 991px) {
-    .agent-mesh-wrapper {
-        width: 100%;
-        height: auto;
-        flex-direction: column;
-        padding: 50px 0;
-        gap: 30px;
-        margin: 0;
-    }
-
-    .mesh-svg {
-        display: none;
-    }
-
-    .mesh-agent-node {
-        position: relative !important;
-        width: 90% !important;
-        left: auto !important;
-        right: auto !important;
-        top: auto !important;
-        bottom: auto !important;
-        margin: 0 auto !important;
-        transform: none !important;
-    }
-
-    .mesh-core {
-        position: relative;
-        margin-bottom: 40px;
+    .arch-diagram-wrapper {
+        padding: 1rem;
     }
 }
 
@@ -373,6 +340,22 @@ h5,
     color: var(--success);
     border-radius: 50px;
     font-weight: 700;
+}
+
+/* Governance List */
+.governance-list {
+    list-style: none;
+    padding: 0;
+}
+
+.governance-list li {
+    padding: 0.5rem 0;
+    color: var(--text-main);
+    font-size: 0.95rem;
+}
+
+.governance-list li i {
+    color: var(--success);
 }
 
 .glow-bg {

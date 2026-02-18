@@ -150,9 +150,9 @@
                 <p class="hero-subtitle">AI Consulting Assistant Platform: 기술 아키텍처 및 워크플로우 설계서</p>
                 <div class="d-flex justify-content-center gap-2 mb-5">
                     <span class="badge rounded-pill bg-dark border border-secondary text-secondary px-3 py-2">Version
-                        1.2</span>
+                        3.0</span>
                     <span class="badge rounded-pill bg-dark border border-secondary text-secondary px-3 py-2">Last
-                        Updated: 2025.12.02</span>
+                        Updated: 2026.02.17</span>
                 </div>
             </div>
 
@@ -168,10 +168,11 @@
                         </p>
                         <h5 class="mt-4 mb-3">핵심 특징</h5>
                         <ul class="governance-list">
-                            <li><i class="bi bi-check2-circle me-2 text-primary"></i> 보안 중심 설계 (Local LLM)</li>
-                            <li><i class="bi bi-check2-circle me-2 text-primary"></i> 5개 전문 에이전트 협업</li>
+                            <li><i class="bi bi-check2-circle me-2 text-primary"></i> 보안 중심 설계 (Local LLM - Ollama)</li>
+                            <li><i class="bi bi-check2-circle me-2 text-primary"></i> 7개 멀티 에이전트 프레임워크 통합</li>
                             <li><i class="bi bi-check2-circle me-2 text-primary"></i> 가중치 기반 정량 평가 엔진</li>
                             <li><i class="bi bi-check2-circle me-2 text-primary"></i> 5단계 컨설팅 프레임워크 자동화</li>
+                            <li><i class="bi bi-check2-circle me-2 text-primary"></i> 145개 API 엔드포인트, 98.1% 테스트 통과</li>
                         </ul>
                     </div>
                 </div>
@@ -179,15 +180,17 @@
                     <div class="glass-card p-4">
                         <h3 class="mb-4">기술 스택</h3>
                         <ul class="tech-list">
-                            <li><span class="label">Frontend</span><span class="value">HTML5, CSS3, JavaScript</span>
+                            <li><span class="label">Frontend</span><span class="value">Jinja2 + HTML5, Bootstrap 5, Chart.js</span>
                             </li>
-                            <li><span class="label">Backend</span><span class="value">FastAPI (Python 3.12)</span></li>
-                            <li><span class="label">LLM Engine</span><span class="value">Ollama (llama3.1:8b)</span>
+                            <li><span class="label">Backend</span><span class="value">FastAPI + Uvicorn (Python 3.12)</span></li>
+                            <li><span class="label">LLM Engine</span><span class="value">Ollama (llama3.2:3b, Local)</span>
                             </li>
-                            <li><span class="label">Agent Framework</span><span class="value">LangGraph, CrewAI,
-                                    AutoGen</span></li>
+                            <li><span class="label">멀티 에이전트</span><span class="value">LangGraph, CrewAI, AutoGen (AG2)</span></li>
+                            <li><span class="label">고급 프레임워크</span><span class="value">DSPy, LangChain (LCEL), LlamaIndex (RAG)</span></li>
+                            <li><span class="label">Native Orchestrator</span><span class="value">AiNex 자체 순차 오케스트레이터</span></li>
                             <li><span class="label">Database</span><span class="value">SQLite + aiosqlite</span></li>
                             <li><span class="label">Embedding</span><span class="value">nomic-embed-text</span></li>
+                            <li><span class="label">서버 포트</span><span class="value">8001</span></li>
                         </ul>
                     </div>
                 </div>
@@ -207,7 +210,7 @@
                                 </p>
                                 <div class="code-block">
                                     class LLMProvider:
-                                    def __init__(self, model: str = "llama3.1:8b", base_url: str = "localhost:11434"):
+                                    def __init__(self, model: str = "llama3.2:3b", base_url: str = "localhost:11434"):
                                     self.model = model
                                     self.base_url = base_url
                                 </div>
@@ -252,31 +255,64 @@
                 </div>
             </div>
 
-            <!-- Multi-Agent -->
+            <!-- Multi-Agent 7 Frameworks -->
             <div class="mb-5">
-                <h3 class="mb-4">3. 멀티 에이전트 프레임워크</h3>
+                <h3 class="mb-4">3. 멀티 에이전트 프레임워크 (7개)</h3>
                 <div class="row g-4">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-lg-3">
                         <div class="glass-card p-4">
                             <div class="icon-box mb-3"><i class="bi bi-diagram-3"></i></div>
-                            <h4>LangGraph</h4>
-                            <p class="small text-muted">에이전트 워크플로우 상태 관리 및 노드 간 오케스트레이션을 담당하여 복잡한 순환 그래프 구조를 관리합니다.</p>
+                            <h5>LangGraph</h5>
+                            <span class="badge bg-primary mb-2">StateGraph</span>
+                            <p class="small text-muted">5 에이전트, 8 노드 기반 조건부 엣지, 품질 기반 재시도</p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-lg-3">
                         <div class="glass-card p-4">
-                            <div class="icon-box mb-3" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i
-                                    class="bi bi-people"></i></div>
-                            <h4>CrewAI</h4>
-                            <p class="small text-muted">역할 기반의 에이전트 협업 체계를 구축하며, 각 에이전트 간의 작업을 분배하고 결과를 취합합니다.</p>
+                            <div class="icon-box mb-3" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="bi bi-people"></i></div>
+                            <h5>CrewAI</h5>
+                            <span class="badge" style="background: #8b5cf6;">Role-Based</span>
+                            <p class="small text-muted">5 에이전트, 6 태스크, Sequential/Hierarchical 프로세스</p>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-lg-3">
                         <div class="glass-card p-4">
-                            <div class="icon-box mb-3" style="color: #10b981; background: rgba(16, 185, 129, 0.1);"><i
-                                    class="bi bi-chat-dots"></i></div>
-                            <h4>AutoGen</h4>
-                            <p class="small text-muted">인간 컨설턴트와의 자율적인 대화 루프를 생성하고 피드백을 시스템에 즉각 반영하는 인터페이스를 구현합니다.</p>
+                            <div class="icon-box mb-3" style="color: #f59e0b; background: rgba(245, 158, 11, 0.1);"><i class="bi bi-chat-dots"></i></div>
+                            <h5>AutoGen (AG2)</h5>
+                            <span class="badge bg-warning text-dark mb-2">GroupChat</span>
+                            <p class="small text-muted">5 에이전트, RoundRobin/Selector 모드 그룹챗</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="glass-card p-4">
+                            <div class="icon-box mb-3" style="color: #06b6d4; background: rgba(6, 182, 212, 0.1);"><i class="bi bi-braces"></i></div>
+                            <h5>DSPy</h5>
+                            <span class="badge bg-info text-dark mb-2">Signatures</span>
+                            <p class="small text-muted">5 Signature, 5 CoT Module, 프로그래밍 방식 프롬프트 최적화</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="glass-card p-4">
+                            <div class="icon-box mb-3" style="color: #10b981; background: rgba(16, 185, 129, 0.1);"><i class="bi bi-link-45deg"></i></div>
+                            <h5>LangChain</h5>
+                            <span class="badge bg-success mb-2">LCEL Pipeline</span>
+                            <p class="small text-muted">5 Chain, PromptTemplate, ChatHistory, Callbacks</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="glass-card p-4">
+                            <div class="icon-box mb-3" style="color: #ef4444; background: rgba(239, 68, 68, 0.1);"><i class="bi bi-database"></i></div>
+                            <h5>LlamaIndex</h5>
+                            <span class="badge bg-danger mb-2">RAG Workflow</span>
+                            <p class="small text-muted">4 ISO 표준 (15문서), VectorStore, SentenceSplitter</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="glass-card p-4">
+                            <div class="icon-box mb-3" style="color: #9aa0a6; background: rgba(154, 160, 166, 0.1);"><i class="bi bi-cpu"></i></div>
+                            <h5>Native</h5>
+                            <span class="badge bg-secondary mb-2">Sequential</span>
+                            <p class="small text-muted">AiNex 자체 5 에이전트 순차 오케스트레이터</p>
                         </div>
                     </div>
                 </div>
@@ -358,7 +394,89 @@
 
             <!-- API Endpoints -->
             <div class="mb-5">
-                <h3 class="mb-4">6. 주요 API 엔드포인트</h3>
+                <h3 class="mb-4">6. 주요 API 엔드포인트 <span class="badge bg-primary ms-2">총 145개</span></h3>
+
+                <h5 class="mb-3 mt-4">시스템 & 멀티 에이전트</h5>
+                <div class="table-responsive mb-4">
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Endpoint</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge bg-success">GET</span></td>
+                                <td>/api/v1/health</td>
+                                <td>시스템 헬스체크</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-success">GET</span></td>
+                                <td>/api/v1/multi-agent/frameworks</td>
+                                <td>프레임워크 목록</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-success">GET</span></td>
+                                <td>/api/v1/multi-agent/health</td>
+                                <td>LangGraph/CrewAI/AutoGen 헬스체크</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-primary">POST</span></td>
+                                <td>/api/v1/multi-agent/langgraph/run</td>
+                                <td>LangGraph 실행</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-primary">POST</span></td>
+                                <td>/api/v1/multi-agent/crewai/run</td>
+                                <td>CrewAI 실행</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-primary">POST</span></td>
+                                <td>/api/v1/multi-agent/autogen/run</td>
+                                <td>AutoGen 실행</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="mb-3">고급 프레임워크</h5>
+                <div class="table-responsive mb-4">
+                    <table class="table-custom">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Endpoint</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="badge bg-success">GET</span></td>
+                                <td>/api/v1/advanced-frameworks/overview</td>
+                                <td>프레임워크 개요</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-primary">POST</span></td>
+                                <td>/api/v1/advanced-frameworks/dspy/run</td>
+                                <td>DSPy 실행 (maturity)</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-primary">POST</span></td>
+                                <td>/api/v1/advanced-frameworks/langchain/run</td>
+                                <td>LangChain 실행</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-primary">POST</span></td>
+                                <td>/api/v1/advanced-frameworks/llamaindex/query</td>
+                                <td>LlamaIndex RAG 질의</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="mb-3">5단계 프레임워크 & 보안</h5>
                 <div class="table-responsive">
                     <table class="table-custom">
                         <thead>
@@ -371,23 +489,23 @@
                         <tbody>
                             <tr>
                                 <td><span class="badge bg-primary">POST</span></td>
-                                <td>`/api/v1/projects`</td>
-                                <td>새로운 AX 프로젝트 생성</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge bg-primary">POST</span></td>
-                                <td>`/api/v1/projects/{id}/maturity`</td>
-                                <td>AI 성숙도 진단 알고리즘 실행</td>
-                            </tr>
-                            <tr>
-                                <td><span class="badge bg-primary">POST</span></td>
-                                <td>`/api/v1/projects/{id}/use-cases`</td>
-                                <td>최적 활용 사례 도출</td>
+                                <td>/api/v1/framework/projects/{id}/stage1~5</td>
+                                <td>5단계 컨설팅 프레임워크 (각 단계별 3 엔드포인트)</td>
                             </tr>
                             <tr>
                                 <td><span class="badge bg-success">GET</span></td>
-                                <td>`/api/v1/projects/{id}/reports`</td>
-                                <td>최종 컨설팅 리포트 조회</td>
+                                <td>/api/v1/framework/projects/{id}/summary</td>
+                                <td>프로젝트 종합 요약</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-success">GET</span></td>
+                                <td>/api/security/audit/logs</td>
+                                <td>보안 감사 로그</td>
+                            </tr>
+                            <tr>
+                                <td><span class="badge bg-success">GET</span></td>
+                                <td>/api/security/monitoring/checklist</td>
+                                <td>모니터링 체크리스트</td>
                             </tr>
                         </tbody>
                     </table>
@@ -413,7 +531,7 @@
                             Service</a>
                         <a href="#" class="ms-3" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a>
                     </div>
-                    <p class="small text-muted mt-3">&copy; 2025 AiNex. All Rights Reserved.</p>
+                    <p class="small text-muted mt-3">&copy; 2025-2026 A3 Security Co.,Ltd. AITF Working Group. All Rights Reserved.</p>
                 </div>
             </div>
         </div>

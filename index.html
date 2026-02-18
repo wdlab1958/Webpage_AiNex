@@ -88,8 +88,8 @@
                         <span class="text-gradient">차세대 AX 전략</span>
                     </h1>
                     <p class="hero-subtitle">
-                        AiNex의 멀티 에이전트 시스템은 하이브리드 LLM 아키텍처를 기반으로<br>
-                        기업의 완벽한 AI 전환 로드맵을 설계합니다.
+                        AiNex의 <strong>7개 멀티 에이전트 프레임워크</strong>와 하이브리드 LLM 아키텍처를 기반으로<br>
+                        기업의 완벽한 AI 전환(AX) 로드맵을 설계합니다.
                     </p>
                     <div class="hero-cta">
                         <a href="http://localhost:8001/" class="btn btn-main text-decoration-none">AI 컨설팅 시작</a>
@@ -180,64 +180,164 @@
         </div>
     </section>
 
-    <!-- Agents Section -->
+    <!-- 7 Multi-Agent Frameworks Section -->
     <section class="section py-5" id="agents">
         <div class="container py-5">
             <div class="text-center mb-5 fade-in">
-                <h2 class="section-title">Multi-Agent Mesh Network</h2>
-                <p class="section-desc">5명의 전문 AI 에이전트가 협업하는 자동화 시스템</p>
+                <h2 class="section-title">7 Multi-Agent Frameworks</h2>
+                <p class="section-desc">AiNex Orchestrator가 통합 관리하는 7개 멀티 에이전트 프레임워크</p>
             </div>
 
-            <div class="agent-mesh-wrapper">
-                <!-- Connecting Lines (SVG) -->
-                <svg class="mesh-svg">
-                    <line x1="50%" y1="50%" x2="50%" y2="10%" class="mesh-line"></line>
-                    <line x1="50%" y1="50%" x2="85%" y2="35%" class="mesh-line"></line>
-                    <line x1="50%" y1="50%" x2="75%" y2="85%" class="mesh-line"></line>
-                    <line x1="50%" y1="50%" x2="25%" y2="85%" class="mesh-line"></line>
-                    <line x1="50%" y1="50%" x2="15%" y2="35%" class="mesh-line"></line>
+            <!-- SVG Architecture Diagram -->
+            <div class="arch-diagram-wrapper mb-5 fade-in">
+                <svg viewBox="0 0 900 220" class="arch-svg" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Top: Orchestrator -->
+                    <rect x="330" y="10" width="240" height="50" rx="12" class="svg-node-orch"/>
+                    <text x="450" y="42" text-anchor="middle" class="svg-text-orch">AiNex Orchestrator</text>
+
+                    <!-- Lines from Orchestrator to Frameworks -->
+                    <line x1="450" y1="60" x2="70" y2="110" class="svg-conn"/>
+                    <line x1="450" y1="60" x2="195" y2="110" class="svg-conn"/>
+                    <line x1="450" y1="60" x2="325" y2="110" class="svg-conn"/>
+                    <line x1="450" y1="60" x2="450" y2="110" class="svg-conn"/>
+                    <line x1="450" y1="60" x2="575" y2="110" class="svg-conn"/>
+                    <line x1="450" y1="60" x2="700" y2="110" class="svg-conn"/>
+                    <line x1="450" y1="60" x2="830" y2="110" class="svg-conn"/>
+
+                    <!-- 7 Framework Nodes -->
+                    <rect x="10" y="110" width="120" height="40" rx="8" class="svg-node-fw"/>
+                    <text x="70" y="135" text-anchor="middle" class="svg-text-fw">LangGraph</text>
+
+                    <rect x="140" y="110" width="110" height="40" rx="8" class="svg-node-fw"/>
+                    <text x="195" y="135" text-anchor="middle" class="svg-text-fw">CrewAI</text>
+
+                    <rect x="265" y="110" width="120" height="40" rx="8" class="svg-node-fw"/>
+                    <text x="325" y="135" text-anchor="middle" class="svg-text-fw">AutoGen</text>
+
+                    <rect x="400" y="110" width="100" height="40" rx="8" class="svg-node-fw"/>
+                    <text x="450" y="135" text-anchor="middle" class="svg-text-fw">DSPy</text>
+
+                    <rect x="515" y="110" width="120" height="40" rx="8" class="svg-node-fw"/>
+                    <text x="575" y="135" text-anchor="middle" class="svg-text-fw">LangChain</text>
+
+                    <rect x="645" y="110" width="120" height="40" rx="8" class="svg-node-fw"/>
+                    <text x="705" y="135" text-anchor="middle" class="svg-text-fw">LlamaIndex</text>
+
+                    <rect x="775" y="110" width="110" height="40" rx="8" class="svg-node-fw"/>
+                    <text x="830" y="135" text-anchor="middle" class="svg-text-fw">Native</text>
+
+                    <!-- Lines from Frameworks to LLM -->
+                    <line x1="70" y1="150" x2="450" y2="185" class="svg-conn"/>
+                    <line x1="195" y1="150" x2="450" y2="185" class="svg-conn"/>
+                    <line x1="325" y1="150" x2="450" y2="185" class="svg-conn"/>
+                    <line x1="450" y1="150" x2="450" y2="185" class="svg-conn"/>
+                    <line x1="575" y1="150" x2="450" y2="185" class="svg-conn"/>
+                    <line x1="705" y1="150" x2="450" y2="185" class="svg-conn"/>
+                    <line x1="830" y1="150" x2="450" y2="185" class="svg-conn"/>
+
+                    <!-- Bottom: Ollama LLM -->
+                    <rect x="340" y="185" width="220" height="30" rx="8" class="svg-node-llm"/>
+                    <text x="450" y="206" text-anchor="middle" class="svg-text-llm">Ollama LLM (llama3.2:3b)</text>
                 </svg>
+            </div>
 
-                <!-- Core Node -->
-                <div class="mesh-core">
-                    <i class="bi bi-cpu"></i>
-                    <div style="font-weight: 700;">AiNex Core</div>
+            <!-- Framework Cards Grid -->
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card framework-card p-4 fade-in">
+                        <div class="fw-icon mb-3"><i class="bi bi-diagram-3"></i></div>
+                        <h5>LangGraph</h5>
+                        <span class="badge bg-primary mb-2">StateGraph</span>
+                        <p class="text-secondary small mb-2">5 에이전트, 8 노드 기반 조건부 엣지 워크플로우</p>
+                        <div class="small text-muted">품질 기반 재시도 로직</div>
+                    </div>
                 </div>
-
-                <!-- Agent Nodes -->
-                <!-- 1. Strategy Analyst (Top) -->
-                <div class="mesh-agent-node node-1">
-                    <div class="node-icon mb-3"><i class="bi bi-graph-up"></i></div>
-                    <h4>Strategy Analyst</h4>
-                    <p class="text-secondary small mb-0">AI 성숙도 진단 및 비즈니스 로드맵 수립</p>
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card framework-card p-4 fade-in">
+                        <div class="fw-icon mb-3"><i class="bi bi-people"></i></div>
+                        <h5>CrewAI</h5>
+                        <span class="badge bg-accent mb-2">Role-Based</span>
+                        <p class="text-secondary small mb-2">5 에이전트, 6 태스크 역할 기반 협업</p>
+                        <div class="small text-muted">Sequential / Hierarchical</div>
+                    </div>
                 </div>
-
-                <!-- 2. Use Case Designer (Right Top) -->
-                <div class="mesh-agent-node node-2">
-                    <div class="node-icon mb-3"><i class="bi bi-diagram-3"></i></div>
-                    <h4>Use Case Designer</h4>
-                    <p class="text-secondary small mb-0">최적의 AI 아키텍처 및 상세 워크플로우 설계</p>
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card framework-card p-4 fade-in">
+                        <div class="fw-icon mb-3"><i class="bi bi-chat-dots"></i></div>
+                        <h5>AutoGen (AG2)</h5>
+                        <span class="badge bg-warning text-dark mb-2">GroupChat</span>
+                        <p class="text-secondary small mb-2">5 에이전트 그룹챗 기반 다자간 대화</p>
+                        <div class="small text-muted">RoundRobin / Selector</div>
+                    </div>
                 </div>
-
-                <!-- 3. ROI Analyst (Right Bottom) -->
-                <div class="mesh-agent-node node-3">
-                    <div class="node-icon mb-3"><i class="bi bi-currency-dollar"></i></div>
-                    <h4>ROI Analyst</h4>
-                    <p class="text-secondary small mb-0">투자 대비 성과(TCO) 및 비즈니스 임팩트 분석</p>
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card framework-card p-4 fade-in">
+                        <div class="fw-icon mb-3"><i class="bi bi-braces"></i></div>
+                        <h5>DSPy</h5>
+                        <span class="badge bg-info text-dark mb-2">Signatures</span>
+                        <p class="text-secondary small mb-2">5 Signature, 5 CoT Module 프로그래밍 방식</p>
+                        <div class="small text-muted">프롬프트 최적화</div>
+                    </div>
                 </div>
-
-                <!-- 4. Risk Assessor (Left Bottom) -->
-                <div class="mesh-agent-node node-4">
-                    <div class="node-icon mb-3"><i class="bi bi-shield-check"></i></div>
-                    <h4>Risk Assessor</h4>
-                    <p class="text-secondary small mb-0">윤리, 보안, 기술적 리스크 평가 및 완화 전략</p>
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card framework-card p-4 fade-in">
+                        <div class="fw-icon mb-3"><i class="bi bi-link-45deg"></i></div>
+                        <h5>LangChain</h5>
+                        <span class="badge bg-success mb-2">LCEL Pipeline</span>
+                        <p class="text-secondary small mb-2">5 Chain, PromptTemplate LCEL 파이프라인</p>
+                        <div class="small text-muted">ChatHistory, Callbacks</div>
+                    </div>
                 </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card framework-card p-4 fade-in">
+                        <div class="fw-icon mb-3"><i class="bi bi-database"></i></div>
+                        <h5>LlamaIndex</h5>
+                        <span class="badge bg-danger mb-2">RAG Workflow</span>
+                        <p class="text-secondary small mb-2">4 ISO 표준 (15문서) RAG 기반 질의응답</p>
+                        <div class="small text-muted">VectorStore, SentenceSplitter</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card framework-card p-4 fade-in">
+                        <div class="fw-icon mb-3"><i class="bi bi-cpu"></i></div>
+                        <h5>Native</h5>
+                        <span class="badge bg-secondary mb-2">Sequential</span>
+                        <p class="text-secondary small mb-2">AiNex 자체 구현 5 에이전트 순차 오케스트레이터</p>
+                        <div class="small text-muted">커스텀 파이프라인</div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="glass-card framework-card p-4 text-center d-flex flex-column justify-content-center fade-in" style="border-style: dashed;">
+                        <div class="fw-icon mb-2"><i class="bi bi-bar-chart-line"></i></div>
+                        <h5 class="text-primary">Platform Stats</h5>
+                        <div class="d-flex justify-content-around mt-2">
+                            <div><span class="d-block fw-bold text-white">145</span><small class="text-muted">APIs</small></div>
+                            <div><span class="d-block fw-bold text-white">98.1%</span><small class="text-muted">Tests</small></div>
+                            <div><span class="d-block fw-bold text-white">7</span><small class="text-muted">Frameworks</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                <!-- 5. Report Generator (Left Top) -->
-                <div class="mesh-agent-node node-5">
-                    <div class="node-icon mb-3"><i class="bi bi-file-earmark-bar-graph"></i></div>
-                    <h4>Report Generator</h4>
-                    <p class="text-secondary small mb-0">최종 컨설팅 리포트 자동 생성 및 대시보드 연동</p>
+            <!-- 5 Consulting Agents -->
+            <div class="text-center mt-5 pt-4 fade-in">
+                <h4 class="mb-4" style="color: var(--text-muted);">5 Consulting Agents (Native)</h4>
+                <div class="row g-3 justify-content-center">
+                    <div class="col-auto">
+                        <div class="agent-chip"><i class="bi bi-graph-up me-2"></i>Strategy Analyst</div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="agent-chip"><i class="bi bi-diagram-3 me-2"></i>Use Case Designer</div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="agent-chip"><i class="bi bi-currency-dollar me-2"></i>ROI Analyst</div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="agent-chip"><i class="bi bi-shield-check me-2"></i>Risk Assessor</div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="agent-chip"><i class="bi bi-file-earmark-bar-graph me-2"></i>Report Generator</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -292,20 +392,23 @@
                 <div class="col-md-6">
                     <h2 class="section-title text-start mb-4">AI Governance & ISO Compliance</h2>
                     <p class="mb-4 text-secondary">
-                        국제 표준 ISO 42001(AI 경영시스템) 및 38500(IT 거버넌스)을 준수하는 검증된 프로세스를 통해
+                        국제 표준 ISO 42001(AI 관리시스템), 23053(ML 프레임워크), 24030(AI 역량 평가),
+                        38500(IT 거버넌스)을 준수하는 검증된 프로세스를 통해
                         AI 도입에 따른 법적, 윤리적 리스크를 사전에 방지합니다.
                     </p>
                     <ul class="governance-list">
-                        <li><i class="bi bi-patch-check-fill me-2"></i> ISO 42001 표준 진단</li>
-                        <li><i class="bi bi-patch-check-fill me-2"></i> AI 위험 등록부 자동 생성</li>
-                        <li><i class="bi bi-patch-check-fill me-2"></i> 모델 카드 및 데이터 시트 관리</li>
+                        <li><i class="bi bi-patch-check-fill me-2"></i> ISO 42001 AIMS 체크리스트, AI 정책 관리</li>
+                        <li><i class="bi bi-patch-check-fill me-2"></i> ISO 23053 ML 파이프라인 체크리스트, 생명주기 관리</li>
+                        <li><i class="bi bi-patch-check-fill me-2"></i> ISO 24030 성숙도 진단, 공정성 메트릭, 위험 평가</li>
+                        <li><i class="bi bi-patch-check-fill me-2"></i> ISO 38500 EDM 사이클, 6대 원칙, 경영진 대시보드</li>
                     </ul>
                 </div>
                 <div class="col-md-6 text-center">
                     <div class="compliance-badge-box">
                         <div class="badge-item">ISO 42001</div>
-                        <div class="badge-item">ISO 38500</div>
+                        <div class="badge-item">ISO 23053</div>
                         <div class="badge-item">ISO 24030</div>
+                        <div class="badge-item">ISO 38500</div>
                     </div>
                 </div>
             </div>
@@ -329,7 +432,7 @@
                             Service</a>
                         <a href="#" class="ms-3" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a>
                     </div>
-                    <p class="small text-muted mt-3">&copy; 2025 AiNex. All Rights Reserved.</p>
+                    <p class="small text-muted mt-3">&copy; 2025-2026 A3 Security Co.,Ltd. AITF Working Group. All Rights Reserved.</p>
                 </div>
             </div>
         </div>
