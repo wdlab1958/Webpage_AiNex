@@ -319,7 +319,7 @@ const injectGuideModal = () => {
     if (document.getElementById('guideModal')) return;
 
     const guidebookFiles = [
-        { name: 'AiNex Strategic Compass', file: 'AiNex_Consulting_Strategic_Compass.pdf', desc: 'A3_AiNex_The_Self_Consulting_Strategic_Compass.pdf' },
+        { name: 'AiNex Strategic Compass', file: 'AiNex_Consulting_Strategic_Compass.pdf', desc: 'AiNex_The_Self_Consulting_Strategic_Compass.pdf' },
         { name: 'Vol.1 Framework', file: 'AiNex_Framwork_vol_1.pdf', desc: 'AiNex_이용자 메뉴얼 해설집_Framwork(vol_1).pdf' },
         { name: 'Vol.2 ISO 42001', file: 'AiNex_ISO42001_vol_2.pdf', desc: 'AiNex_이용자 메뉴얼 해설집_ISO42001(vol_2).pdf' },
         { name: 'Vol.3 ISO 38500', file: 'AiNex_ISO38500_vol_3.pdf', desc: 'AiNex_이용자 메뉴얼 해설집_ISO38500(vol_3).pdf' },

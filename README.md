@@ -86,4 +86,4 @@ npx http-server -p 8002
 
 ---
 
-**Copyright &copy; 2025-2026 A3 Security Co.,Ltd. AITF Working Group. All Rights Reserved.**
+**Copyright &copy; 2025-2026 WDLAB@2023-2026 Co.,Ltd. WDLAB@2023-2026 Working Group. All Rights Reserved.**
